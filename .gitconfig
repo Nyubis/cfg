@@ -1,0 +1,16 @@
+[push]
+	default = current
+[core]
+	whitespace = blank-at-eol,space-before-tab
+	pager = /usr/bin/less
+[merge]
+	tool = meld
+	conflictstyle = diff3
+[alias]
+	st = status
+	co = checkout
+	cm = commit
+	lg = log --oneline --decorate --graph --branches --remotes --tags
+	unstage = reset HEAD --
+	discard = checkout --
+	uncommit = reset HEAD~1
