@@ -69,7 +69,11 @@ function prompt_grml-small_precmd () {
     emulate -L zsh
     local grmltheme=grml-small
     local -a left_items right_items
-    left_items=(rc path vcs percent)
+    if [[ `pwd` == $HOME ]]; then
+        left_items=(rc user at host path vcs percent)
+    else
+        left_items=(rc path vcs percent)
+    fi
     right_items=(sad-smiley)
 
     prompt_grml_precmd_worker
@@ -81,7 +85,8 @@ function prompt_grml-small_setup () {
 
 prompt_themes+=( grml-small )
 
-zstyle ':prompt:grml-small:left:items:path' token '%(4~|…/%3~|%~) '
+#zstyle ':prompt:grml-small:left:items:path' token '%(4~|…/%3~|%~) '
+zstyle ':prompt:grml-small:left:items:path' token '%(5~|%3~|%~) '
 zstyle ':prompt:grml-small:left:items:path' pre '%B%F{blue}'
 zstyle ':prompt:grml-small:left:items:path' post '%b%f'
 zstyle ':prompt:grml-small:left:items:percent' pre '%B'
