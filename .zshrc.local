@@ -24,9 +24,27 @@ alias ll="ls -lh"
 alias la="ls -alh"
 alias nemo="nemo 2>/dev/null"
 alias cim=vim
+alias bim=vim
+alias find="noglob find"
+alias doco=docker-compose
 # extra aliases for new functionality
+alias mdview='/usr/bin/retext --preview 1>/dev/null 2>&1'
 alias docker-stop-all="docker ps -q | xargs -r docker stop"
 alias docker-rm-all="docker ps -q | xargs -r docker rm"
+alias dps="docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}'"
+alias colorpicker="/usr/bin/maim -st 0 | convert - -resize 1x1\! -format '%[pixel:p{0,0}]' info:-"
+# year of our lord 2018 and this still isn't a default alias
+alias unmount=umount
+
+# functions for better aliasing/new functionality
+# docker shell
+function dsh() {
+    if [ "$2" == "" ]; then
+        docker exec -it "$1" bash
+    else
+        docker exec -it "$1" "$2"
+    fi
+}
 
 # Make completion work from the middle of the filename/command
 zstyle ':completion:*' completer _complete
