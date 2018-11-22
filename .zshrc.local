@@ -101,7 +101,12 @@ prompt grml-small
 # Remove / from wordchars so our cursor stops at it
 WORDCHARS="${WORDCHARS:s@/@}"
 
-### Original .zshrc.local below
+# Make ^ in commands work (e.g. git show HEAD^^) without quoting
+# As a result, it still tries to do extended globbing on a ^,
+# but when it fails it doesn't abort, instead it re-runs without globbing.
+setopt NO_NOMATCH
+
+#### Original .zshrc.local below this line
 
 # Filename:      /etc/skel/.zshrc
 # Purpose:       config file for zsh (z shell)
