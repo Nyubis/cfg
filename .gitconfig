@@ -10,7 +10,14 @@
 	st = status
 	co = checkout
 	cm = commit
-	lg = log --oneline --decorate --graph --branches --remotes --tags
 	unstage = reset HEAD --
+	lg = log --oneline --decorate --graph --branches --remotes --tags
+	l  = log --oneline --decorate --graph -10
 	discard = checkout --
 	uncommit = reset HEAD~1
+	split-branch = "!f(){ git reset --keep HEAD~$1 && git checkout -t -b $2 && git cherry-pick ..HEAD@{2}; };f"
+	upstream = "!git branch --set-upstream-to=\"origin/$(git symbolic-ref --short HEAD)\""
+	fpush = push --force-with-lease
+
+[pull]
+	ff = only
